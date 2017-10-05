@@ -40,7 +40,7 @@ func main() {
     go test(num,"write_test"+pub_str) 
   }
 
-  for{
+  for i := 0 ; i < 1024 ; i++ {
     time.Sleep(1024 * time.Microsecond) 
   }
 }
