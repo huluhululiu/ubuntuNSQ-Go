@@ -15,7 +15,7 @@ func test(msg_count int,topic string){
   w, _ := nsq.NewProducer("18.221.119.174:4150", config)
   for i:=0 ; i<msg_count ; i++ {
     i_str := strconv.Itoa(i)
-    fmt.Println("message %d is publishing", i)
+    fmt.Println("message is publishing", i)
     err := w.Publish(topic, []byte("test"+i_str))
     if err != nil {
       log.Panic("Could not connect")
@@ -35,7 +35,7 @@ func main() {
   topic := os.Args[3]
   
   for i := 0 ; i< pub_num ; i++ {
-    fmt.Printf("Right now is publisher %d \n",pub_num)
+    fmt.Printf("Right now is publisher %d \n",i)
     pub_str := strconv.Itoa(i)
     go test(num,topic+pub_str) 
   }
