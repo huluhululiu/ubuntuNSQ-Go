@@ -4,7 +4,7 @@ import (
   "log"
   "sync"
 
-  "github.com/bitly/go-nsq"
+  "github.com/nsqio/go-nsq"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
       wg.Done()
       return nil
   }))
-  err := q.ConnectToNSQD("x.x.x.x#IPaddress of broker:4150")
+  err := q.ConnectToNSQD("18.221.119.174:4150")
   if err != nil {
       log.Panic("Could not connect")
   }
