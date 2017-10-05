@@ -14,7 +14,8 @@ func test(msg_count,topic string){
   config := nsq.NewConfig()
   w, _ := nsq.NewProducer("18.221.119.174:4150", config)
   for i:=0 ; i<msg_count ; i++ {
-    err := w.Publish(strconv.Itoa(topic+i), []byte(strconv.Itoa("test"+i)))
+    i_str, _ := strconv.Itoa(i)
+    err := w.Publish(topic+i_str, []byte("test"+i_str))
     if err != nil {
       log.Panic("Could not connect")
     }
