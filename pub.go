@@ -10,11 +10,12 @@ import (
 )
 
 
-func test(msg_count,topic string){
+func test(msg_count int,topic string){
   config := nsq.NewConfig()
   w, _ := nsq.NewProducer("18.221.119.174:4150", config)
   for i:=0 ; i<msg_count ; i++ {
-    i_str = strconv.Itoa(i)
+    i_str := strconv.Itoa(i)
+    fmt.Println("message publish")
     err := w.Publish(topic, []byte("test"+i_str))
     if err != nil {
       log.Panic("Could not connect")
@@ -32,4 +33,8 @@ func main() {
   num, _ := strconv.Atoi(os.Args[1])
   
   go test(num,"write_test")
+
+  for{
+    time.Sleep(1024 * time.Microsecond) 
+  }
 }
