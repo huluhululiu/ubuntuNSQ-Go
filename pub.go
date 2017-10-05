@@ -34,10 +34,10 @@ func main() {
   num, _ := strconv.Atoi(os.Args[2])
   topic := os.Args[3]
   
-  for i := 0 ; i< pu_num ; i++ {
+  for i := 0 ; i< pub_num ; i++ {
     fmt.Printf("Right now is publisher %d \n",pub_num)
     pub_str := strconv.Itoa(i)
-    go test(num,"write_test"+pub_str) 
+    go test(num,topic+pub_str) 
   }
 
   for i := 0 ; i < 1024 ; i++ {
