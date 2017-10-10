@@ -10,8 +10,13 @@ import (
   "github.com/bitly/go-nsq"
 )
 
-func test(numofmsg int, msg_size int, Channel string)
-{
+//for further implementation
+func HandleMsg(message []byte) {
+  //only to print out
+  fmt.Printf("The message is %+v \n",message)
+}
+
+func test(Channel string) {
   //assign topic&channel, config consumer
   channel := Channel + "m#ephemeral"
   topic := channel
@@ -31,14 +36,23 @@ func test(numofmsg int, msg_size int, Channel string)
   if err != nil {
       log.Panic("Could not connect")
   }
-   
 }
 
 func main() {
-  wg := &sync.WaitGroup{}
-  wg.Add(1)
-  topic := os.Args[1]
+  if len(os.Args) < 3 {
+    fmt.Println("Please input souscriber_number&ctopic(channel) as well")
+  }
   
-  wg.Wait()
-
+  sub_num, _ := strconv.Atoi(os.Args[1])
+  topic := os.Args[2]
+  for i := 0 ; i< sub_num ; i++ {
+    fmt.Printf("Right now is sublisher %d \n",i)
+    sub_str := strconv.Itoa(i)
+    fmt.Printf("The topic is %+v \n",topic+sub_str)
+    go test(topic+sub_str) 
+  }
+  
+  for {
+    time.Sleep(20 * time.Second)
+  }
 }
