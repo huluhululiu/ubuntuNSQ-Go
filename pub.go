@@ -38,7 +38,7 @@ func main() {
     fmt.Printf("Right now is publisher %d \n",i)
     pub_str := strconv.Itoa(i)
     fmt.Printf("The topic is %+v \n",topic+pub_str)
-    go test(num,topic+pub_str) 
+    go test(num,topic+pub_str+"m#ephemeral") 
   }
 
   for i := 0 ; i < 1024 ; i++ {
