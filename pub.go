@@ -11,8 +11,11 @@ import (
 
 
 func test(msg_count int,topic string){
+  //create publisher for the topic
   config := nsq.NewConfig()
   w, _ := nsq.NewProducer("18.221.119.174:4150", config)
+  
+  //publish n messages 
   for i:=0 ; i<msg_count ; i++ {
     i_str := strconv.Itoa(i)
     fmt.Println("message is publishing, the content is %+v \n", "test"+i_str)
@@ -26,6 +29,7 @@ func test(msg_count int,topic string){
 }
 
 func main() {
+  //usage go run pub.go <numof publisher> <numof messages for each publisher> <topic raw name>
   if len(os.Args) < 4 {
     fmt.Println("Please input publisher number&number&topic as well")
   }
@@ -34,6 +38,7 @@ func main() {
   num, _ := strconv.Atoi(os.Args[2])
   topic := os.Args[3]
   
+  //create many publisher 
   for i := 0 ; i< pub_num ; i++ {
     fmt.Printf("Right now is publisher %d \n",i)
     pub_str := strconv.Itoa(i)
