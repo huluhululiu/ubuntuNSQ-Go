@@ -9,21 +9,6 @@ import (
   "strconv"
   "github.com/bitly/go-nsq"
 )
-func test(msg_count int,topic string){
-  config := nsq.NewConfig()
-  w, _ := nsq.NewProducer("18.221.119.174:4150", config)
-  for i:=0 ; i<msg_count ; i++ {
-    i_str := strconv.Itoa(i)
-    fmt.Println("message is publishing", i)
-    err := w.Publish(topic, []byte("test"+i_str))
-    if err != nil {
-      log.Panic("Could not connect")
-    }
-    time.Sleep(1024 * time.Microsecond)
-  }
-  w.Stop()
-}
-
 func main() {
 
   wg := &sync.WaitGroup{}
