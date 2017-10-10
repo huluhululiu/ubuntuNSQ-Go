@@ -2,10 +2,9 @@ package main
 
 import (
   "log"
-  "sync"
+  "fmt"
   "time"
   "os"
-  "runtime"
   "strconv"
   "github.com/bitly/go-nsq"
 )
