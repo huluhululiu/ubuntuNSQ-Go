@@ -6,7 +6,7 @@ import (
   "time"
   "os"
   "strconv"
-  "github.com/bitly/go-nsq"
+  "github.com/nsqio/go-nsq"
 )
 
 //for further implementation
