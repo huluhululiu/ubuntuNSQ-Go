@@ -39,12 +39,15 @@ func test(Channel string) {
 }
 
 func main() {
+  //usage go run sub.go <number of topic to subscribe> <topic raw name>
   if len(os.Args) < 3 {
     fmt.Println("Please input souscriber_number&ctopic(channel) as well")
   }
   
   sub_num, _ := strconv.Atoi(os.Args[1])
   topic := os.Args[2]
+  
+  //subscribe to each topic
   for i := 0 ; i< sub_num ; i++ {
     fmt.Printf("Right now is sublisher %d \n",i)
     sub_str := strconv.Itoa(i)
