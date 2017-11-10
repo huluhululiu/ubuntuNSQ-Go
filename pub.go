@@ -17,24 +17,34 @@ func IsValidChannelName(name string) bool {
 func main() {
   config := nsq.NewConfig()
   w, _ := nsq.NewProducer("18.221.119.174:4150", config)
+<<<<<<< HEAD
   num, _ := strconv.Atoi(os.Args[1])
   for i:=0 ; i<num;i++{
   err := w.Publish("write_test", []byte("test"))
 
   if err != nil {
 =======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> master
 func test(msg_count int,topic string){
   //create publisher for the topic
   config := nsq.NewConfig()
   w, _ := nsq.NewProducer("18.221.119.174:4150", config)
   
   //publish n messages 
+>>>>>>> 5c5e0bf7332fdf64e0c13611308b6c40637413f7
   for i:=0 ; i<msg_count ; i++ {
     i_str := strconv.Itoa(i)
     fmt.Println("message is publishing, the content is %+v \n", "test"+i_str)
     err := w.Publish(topic, []byte("test"+i_str))
     if err != nil {
+<<<<<<< HEAD
 >>>>>>> 5c5e0bf7332fdf64e0c13611308b6c40637413f7
+=======
+>>>>>>> d07900374c46567cf578c83398f79d8c83e5c850
+>>>>>>> master
       log.Panic("Could not connect")
   }
 <<<<<<< HEAD
@@ -55,6 +65,10 @@ func main() {
   num, _ := strconv.Atoi(os.Args[2])
   topic := os.Args[3]
   
+<<<<<<< HEAD
+  go test(num,"write_test")
+>>>>>>> d07900374c46567cf578c83398f79d8c83e5c850
+=======
   //create many publisher 
   for i := 0 ; i< pub_num ; i++ {
     fmt.Printf("Right now is publisher %d \n",i)
