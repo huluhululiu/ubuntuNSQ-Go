@@ -1,38 +1,29 @@
+package main
+
 import (
   "log"
-  "fmt"
-  "os"
-  "strconv"
-  "time"
   "github.com/nsqio/go-nsq"
 )
 
+func IsValidTopicName(name string) bool {
+	return isValidName(name)
+}
 
-func test(msg_count int,topic string){
-  config := nsq.NewConfig()
-  w, _ := nsq.NewProducer("18.221.119.174:4150", config)
-  for i:=0 ; i<msg_count ; i++ {
-    i_str := strconv.Itoa(i)
-    fmt.Println("message publish")
-    err := w.Publish(topic, []byte("test"+i_str))
-    if err != nil {
-      log.Panic("Could not connect")
-    }
-    time.Sleep(1024 * time.Microsecond)
-  }
-  w.Stop()
+func IsValidChannelName(name string) bool {
+	return isValidName(name)
 }
 
 func main() {
-  if len(os.Args) < 2 {
-    fmt.Println("Please input number as well")
-  }
-
+  config := nsq.NewConfig()
+  w, _ := nsq.NewProducer("18.221.119.174:4150", config)
   num, _ := strconv.Atoi(os.Args[1])
-  
-  go test(num,"write_test")
+  for i:=0 ; i<num;i++{
+  err := w.Publish("write_test", []byte("test"))
 
-  for i:=0 ; i< 41 ; i++  {
-    time.Sleep(1024 * time.Microsecond)
+  if err != nil {
+      log.Panic("Could not connect")
   }
+  }
+
+  w.Stop()
 }
